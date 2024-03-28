@@ -2,26 +2,25 @@ package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.I
 
 import TorusProjekt.Matrix.MatrixUtil.MatrixHilfsfunktionen;
 import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
 import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import TorusProjekt.Vektor.Vektor;
 
 public class InverseMatrixVerfahren implements LGSLoeser {
 
-    private final MatrixHilfsfunktionen matrixHilfsfunktionen = new MatrixHilfsfunktionen();
+    private final ExceptionHandler exceptionHandler;
+    private final MatrixHilfsfunktionen matrixHilfsfunktionen;
+
+    public InverseMatrixVerfahren(ExceptionHandler exceptionHandler, MatrixHilfsfunktionen matrixHilfsfunktionen) {
+        this.exceptionHandler = exceptionHandler;
+        this.matrixHilfsfunktionen = matrixHilfsfunktionen;
+    }
 
     @Override
     public Vektor loeseGleichungssystem(Matrix m, Vektor v) {
 
-        if (m.getAnzahlZeilen() != m.getAnzahlSpalten()) {
-            throw new IllegalArgumentException("Matrix muss n x n sein");
-        }
-
-        if (m.getAnzahlZeilen() != v.getVektorWerte().length) {
-            throw new IllegalArgumentException("Dimensionsfehler");
-        }
-
-        if (m.getDeterminante() == 0) {
-            throw new IllegalArgumentException("Gleichung ist nicht eindeutig lösbar");
+        if (!exceptionHandler.istValide(m, v)) {
+            return null;
         }
 
         if (m.getAnzahlSpalten() == 2) {

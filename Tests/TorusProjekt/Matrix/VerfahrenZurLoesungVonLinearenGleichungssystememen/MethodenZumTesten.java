@@ -23,7 +23,7 @@ public class MethodenZumTesten {
 
     public static double[] getAbweichungsArray(int zeilenAnzahl) {
         double[] abweichungsVektor = new double[zeilenAnzahl];
-        Arrays.fill(abweichungsVektor, 0.01);
+        Arrays.fill(abweichungsVektor, 0.1);
         return abweichungsVektor;
     }
 

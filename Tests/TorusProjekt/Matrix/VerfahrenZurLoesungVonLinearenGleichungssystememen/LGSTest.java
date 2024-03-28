@@ -1,5 +1,6 @@
 package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
+import TorusProjekt.Matrix.MatrixUtil.MatrixHilfsfunktionen;
 import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
 import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren.DeterminatenVerfahren;
 import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
@@ -20,13 +21,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LGSTest {
 
-
     private final GaussAlgorithmus gaussAlgorithmus = new GaussAlgorithmus(
             new Stufenform(new GaussHilfsFunktionen()),
             new Diagonalform(new GaussHilfsFunktionen()),
             new ExceptionHandler());
     private final DeterminatenVerfahren determinatenVerfahren = new DeterminatenVerfahren();
-    private final InverseMatrixVerfahren inverseMatrixVerfahren = new InverseMatrixVerfahren();
+    private final InverseMatrixVerfahren inverseMatrixVerfahren = new InverseMatrixVerfahren(new ExceptionHandler(), new MatrixHilfsfunktionen());
 
     @ParameterizedTest
     @MethodSource("generateTestStream")

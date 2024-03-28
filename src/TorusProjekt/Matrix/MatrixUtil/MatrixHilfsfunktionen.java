@@ -5,7 +5,7 @@ import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
 public class MatrixHilfsfunktionen {
 
     public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int spalte) {
-        return getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, 1, spalte);
+        return getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, 0, spalte);
     }
 
     public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int zeile, int spalte) {
@@ -17,16 +17,16 @@ public class MatrixHilfsfunktionen {
         double[][] alteMatrix = matrix.clone();
 
         int l = 0;
-        for (int spaltenIndex = 0; spaltenIndex < neueMatrix.length; spaltenIndex++) {
-            if (spaltenIndex == zeile) {
+        for (int zeilenIndex = 0; zeilenIndex < neueMatrix.length; zeilenIndex++) {
+            if (zeilenIndex == zeile) {
                 l++;
             }
             int k = 0;
-            for (int zeilenIndex = 0; zeilenIndex < neueMatrix.length; zeilenIndex++) {
+            for (int spaltenIndex = 0; spaltenIndex < neueMatrix.length; spaltenIndex++) {
                 if (k == spalte) {
                     k++;
                 }
-                neueMatrix[spaltenIndex][zeilenIndex] = alteMatrix[l][k];
+                neueMatrix[zeilenIndex][spaltenIndex] = alteMatrix[l][k];
                 k++;
             }
             l++;

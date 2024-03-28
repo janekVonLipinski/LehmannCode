@@ -5,8 +5,6 @@ import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.Ex
 import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import TorusProjekt.Vektor.Vektor;
 
-import java.util.Arrays;
-
 public class GaussAlgorithmus implements LGSLoeser {
     private final Stufenform stufenform;
     private final Diagonalform diagonalform;
