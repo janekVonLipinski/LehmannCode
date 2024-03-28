@@ -5,20 +5,14 @@ import java.util.Arrays;
 public class Matrix {
 
     private final double[][] matrix;
-    private final int anzahlZeilen;
-    private final int anzahlSpalten;
     private final DeterminantenRechner determinantenRechner = new DeterminantenRechner();
 
     public Matrix(double[][] matrix) {
         this.matrix = matrix;
-        anzahlSpalten = matrix[0].length;
-        anzahlZeilen = matrix.length;
     }
 
     public Matrix(Matrix m) {
         this.matrix = Arrays.stream(m.matrix).map(double[]::clone).toArray(double[][]::new);
-        this.anzahlSpalten = m.anzahlSpalten;
-        this.anzahlZeilen = m.anzahlZeilen;
     }
 
     public double[][] getMatrix() {
@@ -26,11 +20,11 @@ public class Matrix {
     }
 
     public int getAnzahlSpalten() {
-        return anzahlSpalten;
+        return matrix[0].length;
     }
 
     public int getAnzahlZeilen() {
-        return anzahlZeilen;
+        return matrix.length;
     }
 
     public Matrix multipliziere(Matrix m) {

@@ -1,7 +1,8 @@
-package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
+package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.InverseMatrixVerfahren;
 
 import TorusProjekt.Matrix.MatrixUtil.MatrixHilfsfunktionen;
 import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import TorusProjekt.Vektor.Vektor;
 
 public class InverseMatrixVerfahren implements LGSLoeser {

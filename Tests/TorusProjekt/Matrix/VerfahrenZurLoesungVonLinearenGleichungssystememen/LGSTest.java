@@ -1,7 +1,13 @@
 package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
 import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren.DeterminatenVerfahren;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.Diagonalform;
 import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.GaussAlgorithmus;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.GaussHilfsFunktionen;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.Stufenform;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.InverseMatrixVerfahren.InverseMatrixVerfahren;
 import TorusProjekt.Vektor.Vektor;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -15,7 +21,10 @@ import static org.junit.jupiter.api.Assertions.*;
 class LGSTest {
 
 
-    private final GaussAlgorithmus gaussAlgorithmus = new GaussAlgorithmus();
+    private final GaussAlgorithmus gaussAlgorithmus = new GaussAlgorithmus(
+            new Stufenform(new GaussHilfsFunktionen()),
+            new Diagonalform(new GaussHilfsFunktionen()),
+            new ExceptionHandler());
     private final DeterminatenVerfahren determinatenVerfahren = new DeterminatenVerfahren();
     private final InverseMatrixVerfahren inverseMatrixVerfahren = new InverseMatrixVerfahren();
 

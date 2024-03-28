@@ -17,7 +17,6 @@ public class Stufenform {
         double[][] matrixArray = matrix.getMatrix();
 
         for (int j = 0; j < matrixArray.length; j++) {
-
             tauscheSolangeZeilenBisWertAufHauptDiagonaleNichtNullIst(matrixArray, j, vektorArray);
             subtrahiereJteZeileVonAllenDarunterStehendenZeilenSodassAlleWerteDarunterNullWerden(j, matrixArray, vektorArray);
         }

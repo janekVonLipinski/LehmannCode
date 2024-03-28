@@ -1,6 +1,7 @@
-package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
+package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren;
 
 import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import TorusProjekt.Vektor.Vektor;
 
 public class DeterminatenVerfahren implements LGSLoeser {
