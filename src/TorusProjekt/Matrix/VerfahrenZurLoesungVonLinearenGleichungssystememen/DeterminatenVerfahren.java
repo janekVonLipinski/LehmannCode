@@ -1,7 +1,7 @@
-package TrousProjekt.VektorUndMatrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
+package TorusProjekt.Matrix.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.Matrix;
-import TrousProjekt.VektorUndMatrix.Vektor;
+import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Vektor.Vektor;
 
 public class DeterminatenVerfahren implements LGSLoeser {
 

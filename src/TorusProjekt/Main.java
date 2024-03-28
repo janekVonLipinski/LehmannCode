@@ -1,6 +1,6 @@
-package TrousProjekt;
+package TorusProjekt;
 
-import TrousProjekt.Torus.Torus;
+import TorusProjekt.Torus.Torus;
 
 import javax.swing.*;
 

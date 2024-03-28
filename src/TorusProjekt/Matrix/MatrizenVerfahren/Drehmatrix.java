@@ -1,4 +1,4 @@
-package TrousProjekt.VektorUndMatrix.MatrizenVerfahren;
+package TorusProjekt.Matrix.MatrizenVerfahren;
 
 public class Drehmatrix {
 

@@ -1,7 +1,6 @@
-package TrousProjekt.VektorUndMatrix;
+package TorusProjekt.Matrix;
 
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.DeterminantenRechner;
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

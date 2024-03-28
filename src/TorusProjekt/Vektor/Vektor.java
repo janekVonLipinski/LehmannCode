@@ -1,6 +1,6 @@
-package TrousProjekt.VektorUndMatrix;
+package TorusProjekt.Vektor;
 
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
 
 import java.util.Arrays;
 
@@ -10,6 +10,10 @@ public class Vektor {
 
     public Vektor(double[] werte) {
         this.vektorWerte = werte;
+    }
+
+    public Vektor(Vektor v) {
+        this.vektorWerte = Arrays.copyOf(v.vektorWerte, v.vektorWerte.length);
     }
 
     public double[] getVektorWerte() {
@@ -34,6 +38,15 @@ public class Vektor {
         }
 
         return new Vektor(vektor);
+    }
+
+    public Vektor subtrahiere(Vektor v2) {
+        double[] werteVonV2 = v2.getVektorWerte();
+        double[] differenz = new double[werteVonV2.length];
+        for (int i = 0; i < werteVonV2.length; i++) {
+            differenz[i] = werteVonV2[i] - vektorWerte[i];
+        }
+        return new Vektor(differenz);
     }
 
     @Override

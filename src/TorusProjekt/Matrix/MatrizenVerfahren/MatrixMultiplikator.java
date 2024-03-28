@@ -1,4 +1,4 @@
-package TrousProjekt.VektorUndMatrix.MatrizenVerfahren;
+package TorusProjekt.Matrix.MatrizenVerfahren;
 
 public class MatrixMultiplikator {
 
@@ -20,5 +20,18 @@ public class MatrixMultiplikator {
         }
 
         return ergebnis;
+    }
+
+    protected Matrix multipliziere(Matrix m, double skalar) {
+        Matrix kopierteMatrix = new Matrix(m);
+        double[][] matrix = kopierteMatrix.getMatrix();
+
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] *= skalar;
+            }
+        }
+
+        return kopierteMatrix;
     }
 }

@@ -1,8 +1,8 @@
-package TrousProjekt.Torus;
+package TorusProjekt.Torus;
 
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.Drehmatrix;
-import TrousProjekt.VektorUndMatrix.MatrizenVerfahren.Matrix;
-import TrousProjekt.VektorUndMatrix.Vektor;
+import TorusProjekt.Matrix.MatrizenVerfahren.Drehmatrix;
+import TorusProjekt.Matrix.MatrizenVerfahren.Matrix;
+import TorusProjekt.Vektor.Vektor;
 
 import javax.swing.*;
 import java.awt.*;

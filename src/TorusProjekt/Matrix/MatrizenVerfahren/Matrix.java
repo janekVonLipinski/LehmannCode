@@ -1,4 +1,4 @@
-package TrousProjekt.VektorUndMatrix.MatrizenVerfahren;
+package TorusProjekt.Matrix.MatrizenVerfahren;
 
 import java.util.Arrays;
 
@@ -33,22 +33,12 @@ public class Matrix {
         return anzahlZeilen;
     }
 
-    public boolean istGleich(Matrix m) {
-        if (anzahlSpalten != m.anzahlSpalten || anzahlZeilen != m.anzahlZeilen) {
-            return false;
-        }
-        for (int i = 0; i < anzahlSpalten; i++) {
-            for (int j = 0; j < anzahlSpalten; j++) {
-                if (matrix[i][j] != m.matrix[i][j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public Matrix multipliziere(Matrix m) {
         return new MatrixMultiplikator().multipliziere(this, m);
+    }
+
+    public Matrix multipliziere(double skalar) {
+        return new MatrixMultiplikator().multipliziere(this, skalar);
     }
 
     public double getDeterminante() {
