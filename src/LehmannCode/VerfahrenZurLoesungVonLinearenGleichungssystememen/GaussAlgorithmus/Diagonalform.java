@@ -11,10 +11,10 @@ public class Diagonalform {
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
-    protected Matrix getDiagonalMatrix(Matrix matrix, Vektor vektor) {
+    protected Matrix formeMatrixInDiagonalFormUm(Matrix matrix, Vektor vektor) {
 
         double[][] matrixArray = matrix.getMatrix();
-        double[] vektorArray = vektor.getVektorWerte();
+        double[] vektorArray = vektor.getVektor();
 
         for (int j = matrixArray.length - 1; j >= 0; j--) {
             subtrahiereJteZeileVonAllenDarueberLiegendenZeilenSodassWerteNullWerden(j, matrixArray, vektorArray);

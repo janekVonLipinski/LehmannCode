@@ -21,19 +21,17 @@ public class GaussAlgorithmus implements LGSLoeser {
         Vektor vektor = new Vektor(loesungsVektor);
         Matrix matrix = new Matrix(koeffizientenMatrix);
 
-        if (!exceptionHandler.istValide(koeffizientenMatrix, vektor)) {
-            return null;
-        }
+        exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
 
-        Matrix dreiecksMatrix = stufenform.getStufenForm(matrix, vektor);
-        Matrix diagonalMatrix = diagonalform.getDiagonalMatrix(dreiecksMatrix, vektor);
+        Matrix dreiecksMatrix = stufenform.formeMatrixInStufenformUm(matrix, vektor);
+        Matrix diagonalMatrix = diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix, vektor);
+
         return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(vektor, diagonalMatrix);
     }
 
     private Vektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(Vektor loesungsVektor, Matrix diagonalMatrix) {
-        double[] vektorArray = loesungsVektor.getVektorWerte();
+        double[] vektorArray = loesungsVektor.getVektor();
         double[][] diagonalmatrixArray = diagonalMatrix.getMatrix();
-
         double[] loesung = new double[diagonalmatrixArray.length];
 
         for (int i = 0; i < diagonalmatrixArray.length; i++) {

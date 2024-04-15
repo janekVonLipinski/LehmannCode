@@ -25,7 +25,7 @@ class LGSTest {
             new Stufenform(new GaussHilfsFunktionen()),
             new Diagonalform(new GaussHilfsFunktionen()),
             new ExceptionHandler());
-    private final DeterminatenVerfahren determinatenVerfahren = new DeterminatenVerfahren();
+    private final DeterminatenVerfahren determinatenVerfahren = new DeterminatenVerfahren(new ExceptionHandler());
     private final InverseMatrixVerfahren inverseMatrixVerfahren = new InverseMatrixVerfahren(new ExceptionHandler(), new MatrixHilfsfunktionen());
 
     @ParameterizedTest

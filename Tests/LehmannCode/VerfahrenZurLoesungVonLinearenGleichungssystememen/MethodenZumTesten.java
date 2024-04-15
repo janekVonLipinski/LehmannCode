@@ -9,8 +9,8 @@ import java.util.Random;
 public class MethodenZumTesten {
 
     public static boolean sindWerteKleinerAlsDiffernz(Vektor v1, Vektor v2) {
-        int zeilenAnzahl = v1.getVektorWerte().length;
-        double[] differenz = v1.subtrahiere(v2).getVektorWerte();
+        int zeilenAnzahl = v1.getVektor().length;
+        double[] differenz = v1.subtrahiere(v2).getVektor();
         double[] abweichung = getAbweichungsArray(zeilenAnzahl);
 
         for (int i = 0; i < zeilenAnzahl; i++) {

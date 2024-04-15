@@ -81,9 +81,9 @@ public class Torus extends JPanel {
             int[] zs = new int[3];
 
             for (int k = 0; k < 3; k++) {
-                int x = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektorWerte()[0];
-                int y = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektorWerte()[1];
-                int z = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektorWerte()[2];
+                int x = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektor()[0];
+                int y = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektor()[1];
+                int z = (int) punkte[(i+k)].multipliziere(drehMatrix).getVektor()[2];
 
                 xs[k] = x - y / 2;
                 zs[k] = z - y / 2;

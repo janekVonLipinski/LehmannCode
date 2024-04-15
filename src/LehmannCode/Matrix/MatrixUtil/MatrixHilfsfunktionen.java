@@ -8,7 +8,7 @@ public class MatrixHilfsfunktionen {
         return getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, 0, spalte);
     }
 
-    public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int zeile, int spalte) {
+    public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int zeile, int gestricheneSpalte) {
         int anzahlSpalten = m.getAnzahlSpalten();
         int anzahlZeilen = m.getAnzahlZeilen();
         double[][] matrix = m.getMatrix();
@@ -16,20 +16,20 @@ public class MatrixHilfsfunktionen {
         double[][] neueMatrix = new double[anzahlZeilen - 1][anzahlSpalten - 1];
         double[][] alteMatrix = matrix.clone();
 
-        int l = 0;
+        int alteMatrixZeile = 0;
         for (int zeilenIndex = 0; zeilenIndex < neueMatrix.length; zeilenIndex++) {
             if (zeilenIndex == zeile) {
-                l++;
+                alteMatrixZeile++;
             }
-            int k = 0;
+            int alteMatrixSpalte = 0;
             for (int spaltenIndex = 0; spaltenIndex < neueMatrix.length; spaltenIndex++) {
-                if (k == spalte) {
-                    k++;
+                if (alteMatrixSpalte == gestricheneSpalte) {
+                    alteMatrixSpalte++;
                 }
-                neueMatrix[zeilenIndex][spaltenIndex] = alteMatrix[l][k];
-                k++;
+                neueMatrix[zeilenIndex][spaltenIndex] = alteMatrix[alteMatrixZeile][alteMatrixSpalte];
+                alteMatrixSpalte++;
             }
-            l++;
+            alteMatrixZeile++;
         }
         return new Matrix(neueMatrix);
     }

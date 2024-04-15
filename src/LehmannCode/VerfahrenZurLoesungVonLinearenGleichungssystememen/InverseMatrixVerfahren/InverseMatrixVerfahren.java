@@ -19,9 +19,8 @@ public class InverseMatrixVerfahren implements LGSLoeser {
     @Override
     public Vektor loeseGleichungssystem(Matrix m, Vektor v) {
 
-        if (!exceptionHandler.istValide(m, v)) {
-            return null;
-        }
+        exceptionHandler.istGleichungssystemValide(m, v);
+        exceptionHandler.istGleichungssystemEindeutigLoesbar(m);
 
         if (m.getAnzahlSpalten() == 2) {
             double[][] matrix = m.getMatrix();

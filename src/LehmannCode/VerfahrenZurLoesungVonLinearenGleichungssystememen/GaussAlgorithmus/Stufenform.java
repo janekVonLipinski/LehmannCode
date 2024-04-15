@@ -11,9 +11,9 @@ public class Stufenform {
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
-    protected Matrix getStufenForm(Matrix matrix, Vektor vektor) {
+    protected Matrix formeMatrixInStufenformUm(Matrix matrix, Vektor vektor) {
 
-        double[] vektorArray = vektor.getVektorWerte();
+        double[] vektorArray = vektor.getVektor();
         double[][] matrixArray = matrix.getMatrix();
 
         for (int j = 0; j < matrixArray.length; j++) {
