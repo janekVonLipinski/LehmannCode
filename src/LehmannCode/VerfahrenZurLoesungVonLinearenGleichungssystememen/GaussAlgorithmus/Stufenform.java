@@ -16,43 +16,60 @@ public class Stufenform {
         double[] vektorArray = vektor.getVektor();
         double[][] matrixArray = matrix.getMatrix();
 
-        for (int j = 0; j < matrixArray.length; j++) {
-            tauscheSolangeZeilenBisWertAufHauptDiagonaleNichtNullIst(matrixArray, j, vektorArray);
-            subtrahiereJteZeileVonAllenDarunterStehendenZeilenSodassAlleWerteDarunterNullWerden(j, matrixArray, vektorArray);
+        for (int spaltenIndex = 0; spaltenIndex < matrixArray.length; spaltenIndex++) {
+
+            tauscheSolangeZeilenBisWertAufHauptDiagonaleNichtNullIst(matrixArray, spaltenIndex, vektorArray);
+            eliminiereElementeUnterDiagonalElement(spaltenIndex, matrixArray, vektorArray);
         }
+
         return new Matrix(matrixArray);
     }
 
-    private void subtrahiereJteZeileVonAllenDarunterStehendenZeilenSodassAlleWerteDarunterNullWerden(
-            int j, double[][] matrixArray, double[] vektorArray) {
-        for (int k = 1; j + k < matrixArray.length; k++) {
-            double[] zeileVonDerSubtrahiertWird = matrixArray[j + k];
-            double[] zeileDieSubtrahiertWird = matrixArray[j];
+    private void eliminiereElementeUnterDiagonalElement(int spaltenIndex, double[][] matrixArray, double[] vektorArray) {
 
-            subtrahiereVonJPlusKterZeileSodassElementNullWird(zeileDieSubtrahiertWird, j, zeileVonDerSubtrahiertWird,
-                    matrixArray, k, vektorArray);
+        for (int naechsterZeilenIndex = 1;
+             spaltenIndex + naechsterZeilenIndex < matrixArray.length;
+             naechsterZeilenIndex++) {
+
+            int indexVonNaechstemElementDasEliminiertWird = spaltenIndex + naechsterZeilenIndex;
+
+            double[] zeileInDerEliminiertWird = matrixArray[indexVonNaechstemElementDasEliminiertWird];
+            double[] zeileNachDerEntwickeltWird = matrixArray[spaltenIndex];
+
+            double koeffizient = gaussHilfsFunktionen.getKoeffizient(
+                    zeileNachDerEntwickeltWird[spaltenIndex],
+                    zeileInDerEliminiertWird[spaltenIndex]
+            );
+
+            eliminiereNaechstesElementInMatrix(
+                    matrixArray, indexVonNaechstemElementDasEliminiertWird,
+                    zeileNachDerEntwickeltWird, zeileInDerEliminiertWird,  koeffizient
+            );
+
+            eliminiereNaechstesElementInVektor(
+                    spaltenIndex, indexVonNaechstemElementDasEliminiertWird, koeffizient, vektorArray
+            );
         }
     }
 
-    private void subtrahiereVonJPlusKterZeileSodassElementNullWird(
-            double[] zeileDieSubtrahiertWird, int j, double[] zeileVonDerSubtrahiertWird,
-            double[][] matrixArray, int k, double[] vektorArray) {
-        double koeffizient = gaussHilfsFunktionen.getKoeffizient(
-                zeileDieSubtrahiertWird[j],
-                zeileVonDerSubtrahiertWird[j]
-        );
+    private void eliminiereNaechstesElementInMatrix(
+            double[][] matrixArray, int indexVonNaechstemElementDasEliminiertWird,
+            double[] zeileNachDerEntwickeltWird, double[] zeileInDerEliminiertWird, double koeffizient) {
 
-        matrixArray[j + k] = gaussHilfsFunktionen.subtrahiereZeile(zeileDieSubtrahiertWird,
-                zeileVonDerSubtrahiertWird, koeffizient);
-
-        vektorArray[j + k] = vektorArray[j + k] - koeffizient * vektorArray[j];
+        matrixArray[indexVonNaechstemElementDasEliminiertWird] = gaussHilfsFunktionen.subtrahiereZeile(zeileNachDerEntwickeltWird,
+                zeileInDerEliminiertWird, koeffizient);
     }
 
-    private void tauscheSolangeZeilenBisWertAufHauptDiagonaleNichtNullIst(double[][] matrixArray, int j, double[] vektorArray) {
-        int i = 1;
-        while (gaussHilfsFunktionen.istWertAufDiagonale0(matrixArray, j)) {
-            gaussHilfsFunktionen.tausche(matrixArray, vektorArray, j, i);
-            i++;
+    private void eliminiereNaechstesElementInVektor(int spaltenIndex, int indexVonNaechstemElementDasEliminiertWird, double koeffizient, double[] vektorArray) {
+        vektorArray[indexVonNaechstemElementDasEliminiertWird] =
+                vektorArray[indexVonNaechstemElementDasEliminiertWird] - koeffizient * vektorArray[spaltenIndex];
+    }
+
+    private void tauscheSolangeZeilenBisWertAufHauptDiagonaleNichtNullIst(double[][] matrixArray, int zeileNachDerEntwickeltWird, double[] vektorArray) {
+        int andereZeile = 1;
+        while (gaussHilfsFunktionen.istWertAufDiagonaleNull(matrixArray, zeileNachDerEntwickeltWird)) {
+            gaussHilfsFunktionen.tauscheZeilenVonVektorUndMatrix(matrixArray, vektorArray, zeileNachDerEntwickeltWird, andereZeile);
+            andereZeile++;
         }
     }
 }

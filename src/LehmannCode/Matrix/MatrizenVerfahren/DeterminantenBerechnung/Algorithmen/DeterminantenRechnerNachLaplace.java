@@ -1,10 +1,12 @@
-package LehmannCode.Matrix.MatrizenVerfahren;
+package LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen;
 
 import LehmannCode.Matrix.MatrixUtil.MatrixHilfsfunktionen;
+import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Determinante;
+import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
 
-public class DeterminantenRechner {
+public class DeterminantenRechnerNachLaplace implements Determinante {
 
-    protected double getDeterminante(Matrix m) {
+    public double getDeterminante(Matrix m) {
         return getDeterminante(m, 1);
     }
 

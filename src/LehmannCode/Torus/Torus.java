@@ -1,6 +1,5 @@
 package LehmannCode.Torus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Drehmatrix;
 import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
 import LehmannCode.Vektor.Vektor;
 

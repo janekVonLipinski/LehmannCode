@@ -1,18 +1,32 @@
 package LehmannCode.Matrix.MatrizenVerfahren;
 
+import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachLaplace;
+import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Determinante;
+
 import java.util.Arrays;
 
 public class Matrix {
 
     private final double[][] matrix;
-    private final DeterminantenRechner determinantenRechner = new DeterminantenRechner();
+    private final Determinante determinantenRechner;
+    private final MatrixMultiplikator matrixMultiplikator;
+
+    public Matrix(double[][] matrix, Determinante determinantenRechner, MatrixMultiplikator matrixMultiplikator) {
+        this.matrix = matrix;
+        this.determinantenRechner = determinantenRechner;
+        this.matrixMultiplikator = matrixMultiplikator;
+    }
 
     public Matrix(double[][] matrix) {
         this.matrix = matrix;
+        this.determinantenRechner = new DeterminantenRechnerNachLaplace();
+        this.matrixMultiplikator = new MatrixMultiplikator();
     }
 
     public Matrix(Matrix m) {
         this.matrix = Arrays.stream(m.matrix).map(double[]::clone).toArray(double[][]::new);
+        this.determinantenRechner = m.determinantenRechner;
+        this.matrixMultiplikator = m.matrixMultiplikator;
     }
 
     public double[][] getMatrix() {
@@ -28,18 +42,16 @@ public class Matrix {
     }
 
     public Matrix multipliziere(Matrix m) {
-        return new MatrixMultiplikator().multipliziere(this, m);
+        return matrixMultiplikator.multipliziere(this, m);
     }
 
     public Matrix multipliziere(double skalar) {
-        return new MatrixMultiplikator().multipliziere(this, skalar);
+        return matrixMultiplikator.multipliziere(this, skalar);
     }
 
     public double getDeterminante() {
         return determinantenRechner.getDeterminante(this);
     }
-
-
 
     @Override
     public String toString() {

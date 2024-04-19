@@ -23,8 +23,8 @@ public class GaussAlgorithmus implements LGSLoeser {
 
         exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
 
-        Matrix dreiecksMatrix = stufenform.formeMatrixInStufenformUm(matrix, vektor);
-        Matrix diagonalMatrix = diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix, vektor);
+        Matrix dreiecksMatrix = formeMatrixInStufenformUmUndFormeVektorGenausoUm(matrix, vektor);
+        Matrix diagonalMatrix = formeMatrixInDiagonalFormUmUndFormeVektorGenausoUm(dreiecksMatrix, vektor);
 
         return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(vektor, diagonalMatrix);
     }
@@ -39,5 +39,13 @@ public class GaussAlgorithmus implements LGSLoeser {
         }
 
         return new Vektor(loesung);
+    }
+
+    private Matrix formeMatrixInDiagonalFormUmUndFormeVektorGenausoUm(Matrix dreiecksMatrix, Vektor vektor) {
+        return diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix, vektor);
+    }
+
+    private Matrix formeMatrixInStufenformUmUndFormeVektorGenausoUm(Matrix matrix, Vektor vektor) {
+        return stufenform.formeMatrixInStufenformUm(matrix, vektor);
     }
 }

@@ -7,7 +7,7 @@ public class GaussHilfsFunktionen {
     protected double[] subtrahiereZeile(double[] ersteZeile, double[] zweiteZeile,
                                       double koeffiezient) {
 
-        double[] multiplizierteZeile = getMultiplizierteZeile(ersteZeile, koeffiezient);
+        double[] multiplizierteZeile = multipliziereZeile(ersteZeile, koeffiezient);
 
         double[] returnArray = new double[ersteZeile.length];
         for (int i = 0; i < ersteZeile.length; i++) {
@@ -17,7 +17,7 @@ public class GaussHilfsFunktionen {
         return returnArray;
     }
 
-    protected void tausche(double[][] matrixArray, double[] vektorArray, int j, int i) {
+    protected void tauscheZeilenVonVektorUndMatrix(double[][] matrixArray, double[] vektorArray, int j, int i) {
         tauscheZeileVonMatrix(matrixArray, j, i);
         tauscheZeileVonVektor(vektorArray, j, i);
     }
@@ -29,11 +29,11 @@ public class GaussHilfsFunktionen {
         return zweiterWert / ersterWert;
     }
 
-    protected boolean istWertAufDiagonale0(double[][] matrix, int j) {
+    protected boolean istWertAufDiagonaleNull(double[][] matrix, int j) {
         return matrix[j][j] == 0;
     }
 
-    private double[] getMultiplizierteZeile(double[] zeile, double koeffizient)  {
+    private double[] multipliziereZeile(double[] zeile, double koeffizient)  {
         double[] copy = Arrays.copyOf(zeile, zeile.length);
         return Arrays.stream(copy)
                 .map(i -> i * koeffizient)

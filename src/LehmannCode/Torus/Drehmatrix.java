@@ -1,4 +1,6 @@
-package LehmannCode.Matrix.MatrizenVerfahren;
+package LehmannCode.Torus;
+
+import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
 
 public class Drehmatrix {
 
