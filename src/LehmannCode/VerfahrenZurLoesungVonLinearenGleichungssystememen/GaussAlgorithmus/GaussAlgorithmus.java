@@ -37,8 +37,8 @@ public class GaussAlgorithmus implements LGSLoeser {
         double[][] diagonalmatrixArray = diagonalMatrix.getMatrix();
         double[] loesung = new double[diagonalmatrixArray.length];
 
-        for (int i = 0; i < diagonalmatrixArray.length; i++) {
-            loesung[i] = diagonalmatrixArray[i][diagonalMatrix.getAnzahlSpalten() - 1] / diagonalmatrixArray[i][i];
+        for (int zeile = 0; zeile < diagonalmatrixArray.length; zeile++) {
+            loesung[zeile] = diagonalmatrixArray[zeile][diagonalMatrix.getAnzahlSpalten() - 1] / diagonalmatrixArray[zeile][zeile];
         }
 
         return new Vektor(loesung);
