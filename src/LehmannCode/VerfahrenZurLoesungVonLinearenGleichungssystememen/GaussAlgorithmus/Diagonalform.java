@@ -11,31 +11,30 @@ public class Diagonalform {
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
-    protected Matrix formeMatrixInDiagonalFormUm(Matrix matrix, Vektor vektor) {
+    protected Matrix formeMatrixInDiagonalFormUm(Matrix matrix) {
 
         double[][] matrixArray = matrix.getMatrix();
-        double[] vektorArray = vektor.getVektor();
 
         for (int j = matrixArray.length - 1; j >= 0; j--) {
-            subtrahiereJteZeileVonAllenDarueberLiegendenZeilenSodassWerteNullWerden(j, matrixArray, vektorArray);
+            subtrahiereJteZeileVonAllenDarueberLiegendenZeilenSodassWerteNullWerden(j, matrixArray);
         }
         return new Matrix(matrixArray);
     }
 
     private void subtrahiereJteZeileVonAllenDarueberLiegendenZeilenSodassWerteNullWerden(
-            int j, double[][] matrixArray, double[] vektorArray) {
+            int j, double[][] matrixArray) {
         for (int k = 1; j - k >= 0; k++) {
             double[] zeileVonDerSubtrahiertWird = matrixArray[j -k];
             double[] zeileDieSubtrahiertWird = matrixArray[j];
 
             subtrahiereVonJMinusKteZeileSodassElementNullWird(
-                    zeileDieSubtrahiertWird, j, zeileVonDerSubtrahiertWird, matrixArray, k, vektorArray);
+                    zeileDieSubtrahiertWird, j, zeileVonDerSubtrahiertWird, matrixArray, k);
         }
     }
 
     private void subtrahiereVonJMinusKteZeileSodassElementNullWird(
             double[] zeileDieSubtrahiertWird, int j, double[] zeileVonDerSubtrahiertWird,
-            double[][] matrixArray, int k, double[] vektorArray) {
+            double[][] matrixArray, int k) {
         double koeffizient = gaussHilfsFunktionen.getKoeffizient(
                 zeileDieSubtrahiertWird[j],
                 zeileVonDerSubtrahiertWird[j]
@@ -43,7 +42,5 @@ public class Diagonalform {
 
         matrixArray[j - k] = gaussHilfsFunktionen.subtrahiereZeile(zeileDieSubtrahiertWird,
                 zeileVonDerSubtrahiertWird, koeffizient);
-
-        vektorArray[j - k] = vektorArray[j - k] - koeffizient * vektorArray[j];
     }
 }

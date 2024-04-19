@@ -21,10 +21,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LGSTest {
 
+    private final GaussHilfsFunktionen gaussHilfsFunktionen = new GaussHilfsFunktionen();
     private final GaussAlgorithmus gaussAlgorithmus = new GaussAlgorithmus(
-            new Stufenform(new GaussHilfsFunktionen()),
-            new Diagonalform(new GaussHilfsFunktionen()),
-            new ExceptionHandler());
+            new Stufenform(gaussHilfsFunktionen),
+            new Diagonalform(gaussHilfsFunktionen),
+            new ExceptionHandler(),
+            gaussHilfsFunktionen);
     private final DeterminatenVerfahren determinatenVerfahren = new DeterminatenVerfahren(new ExceptionHandler());
     private final InverseMatrixVerfahren inverseMatrixVerfahren = new InverseMatrixVerfahren(new ExceptionHandler(), new MatrixHilfsfunktionen());
 

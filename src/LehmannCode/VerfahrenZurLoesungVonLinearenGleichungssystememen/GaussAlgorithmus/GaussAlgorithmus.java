@@ -9,11 +9,13 @@ public class GaussAlgorithmus implements LGSLoeser {
     private final Stufenform stufenform;
     private final Diagonalform diagonalform;
     private final ExceptionHandler exceptionHandler;
+    private final GaussHilfsFunktionen gaussHilfsFunktionen;
 
-    public GaussAlgorithmus(Stufenform stufenform, Diagonalform diagonalform, ExceptionHandler exceptionHandler) {
+    public GaussAlgorithmus(Stufenform stufenform, Diagonalform diagonalform, ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
         this.stufenform = stufenform;
         this.diagonalform = diagonalform;
         this.exceptionHandler = exceptionHandler;
+        this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
     @Override
@@ -23,29 +25,30 @@ public class GaussAlgorithmus implements LGSLoeser {
 
         exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
 
-        Matrix dreiecksMatrix = formeMatrixInStufenformUmUndFormeVektorGenausoUm(matrix, vektor);
-        Matrix diagonalMatrix = formeMatrixInDiagonalFormUmUndFormeVektorGenausoUm(dreiecksMatrix, vektor);
+        Matrix erweitereKoeffizientenMatrix = gaussHilfsFunktionen.erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
 
-        return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(vektor, diagonalMatrix);
+        Matrix dreiecksMatrix = formeInStufenFormUm(erweitereKoeffizientenMatrix);
+        Matrix diagonalMatrix = formeMatrixInDiagonalFormUm(dreiecksMatrix);
+
+        return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(diagonalMatrix);
     }
 
-    private Vektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(Vektor loesungsVektor, Matrix diagonalMatrix) {
-        double[] vektorArray = loesungsVektor.getVektor();
+    private Vektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(Matrix diagonalMatrix) {
         double[][] diagonalmatrixArray = diagonalMatrix.getMatrix();
         double[] loesung = new double[diagonalmatrixArray.length];
 
         for (int i = 0; i < diagonalmatrixArray.length; i++) {
-            loesung[i] = vektorArray[i] / diagonalmatrixArray[i][i];
+            loesung[i] = diagonalmatrixArray[i][diagonalMatrix.getAnzahlSpalten() - 1] / diagonalmatrixArray[i][i];
         }
 
         return new Vektor(loesung);
     }
 
-    private Matrix formeMatrixInDiagonalFormUmUndFormeVektorGenausoUm(Matrix dreiecksMatrix, Vektor vektor) {
-        return diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix, vektor);
+    private Matrix formeMatrixInDiagonalFormUm(Matrix dreiecksMatrix) {
+        return diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix);
     }
 
-    private Matrix formeMatrixInStufenformUmUndFormeVektorGenausoUm(Matrix matrix, Vektor vektor) {
-        return stufenform.formeMatrixInStufenformUm(matrix, vektor);
+    private Matrix formeInStufenFormUm(Matrix matrix) {
+        return stufenform.formeMatrixInStufenformUm(matrix);
     }
 }

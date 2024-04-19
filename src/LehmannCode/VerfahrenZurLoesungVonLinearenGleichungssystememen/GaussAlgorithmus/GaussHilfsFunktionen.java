@@ -1,8 +1,27 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
+import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Vektor.Vektor;
+
 import java.util.Arrays;
 
 public class GaussHilfsFunktionen {
+
+    protected Matrix erzeugeErweiterteKoeffizientenMatrix(Matrix m, Vektor v) {
+        double[][] matrix = new Matrix(m).getMatrix();
+        double[] vektor = new Vektor(v).getVektor();
+
+        double[][] erweiterteKoeffizientenMatrix = new double[m.getAnzahlZeilen()][m.getAnzahlSpalten() + 1];
+
+        for (int zeile = 0; zeile < m.getAnzahlZeilen(); zeile++) {
+            for (int spalte = 0; spalte < m.getAnzahlSpalten(); spalte++) {
+                erweiterteKoeffizientenMatrix[zeile][spalte] = matrix[zeile][spalte];
+            }
+            erweiterteKoeffizientenMatrix[zeile][m.getAnzahlSpalten()] = vektor[zeile];
+        }
+
+        return new Matrix(erweiterteKoeffizientenMatrix);
+    }
 
     protected double[] subtrahiereZeile(double[] ersteZeile, double[] zweiteZeile,
                                       double koeffiezient) {
@@ -15,11 +34,6 @@ public class GaussHilfsFunktionen {
         }
 
         return returnArray;
-    }
-
-    protected void tauscheZeilenVonVektorUndMatrix(double[][] matrixArray, double[] vektorArray, int j, int i) {
-        tauscheZeileVonMatrix(matrixArray, j, i);
-        tauscheZeileVonVektor(vektorArray, j, i);
     }
 
     protected double getKoeffizient(double ersterWert, double zweiterWert) {
@@ -40,7 +54,7 @@ public class GaussHilfsFunktionen {
                 .toArray();
     }
 
-    private void tauscheZeileVonMatrix(double[][] matrixArray, int indexErsteZeile, int indexZweiteZeile) {
+    protected void tauscheZeileVonMatrix(double[][] matrixArray, int indexErsteZeile, int indexZweiteZeile) {
 
         double[] ersteZeile = matrixArray[indexErsteZeile];
         double[] zweiteZeile = matrixArray[indexZweiteZeile];
