@@ -36,13 +36,6 @@ public class GaussHilfsFunktionen {
         return returnArray;
     }
 
-    protected double getKoeffizient(double ersterWert, double zweiterWert) {
-        if (ersterWert == 0) {
-            throw new ArithmeticException("Shit man, you have devided by 0");
-        }
-        return zweiterWert / ersterWert;
-    }
-
     protected boolean istWertAufDiagonaleNull(double[][] matrix, int j) {
         return matrix[j][j] == 0;
     }

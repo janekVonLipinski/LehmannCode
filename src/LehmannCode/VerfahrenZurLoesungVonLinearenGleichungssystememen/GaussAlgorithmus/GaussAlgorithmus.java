@@ -11,7 +11,8 @@ public class GaussAlgorithmus implements LGSLoeser {
     private final ExceptionHandler exceptionHandler;
     private final GaussHilfsFunktionen gaussHilfsFunktionen;
 
-    public GaussAlgorithmus(Stufenform stufenform, Diagonalform diagonalform, ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
+    public GaussAlgorithmus(Stufenform stufenform, Diagonalform diagonalform,
+                            ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
         this.stufenform = stufenform;
         this.diagonalform = diagonalform;
         this.exceptionHandler = exceptionHandler;
@@ -38,10 +39,10 @@ public class GaussAlgorithmus implements LGSLoeser {
 
         for (int zeile = 0; zeile < diagonalmatrixArray.length; zeile++) {
 
-            double elementVonVektor = diagonalmatrixArray[zeile][diagonalMatrix.getAnzahlSpalten() - 1];
-            double elementVonDiagonalMatrix = diagonalmatrixArray[zeile][zeile];
+            double elementVonVektorInZeile = diagonalmatrixArray[zeile][diagonalMatrix.getAnzahlSpalten() - 1];
+            double elementVonDiagonalMatrixInZeile = diagonalmatrixArray[zeile][zeile];
 
-            xVektor[zeile] = elementVonVektor / elementVonDiagonalMatrix;
+            xVektor[zeile] = elementVonVektorInZeile / elementVonDiagonalMatrixInZeile;
         }
 
         return new Vektor(xVektor);

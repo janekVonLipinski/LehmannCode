@@ -1,7 +1,6 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
 import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
-import LehmannCode.Vektor.Vektor;
 
 public class Stufenform {
 
@@ -14,44 +13,34 @@ public class Stufenform {
     public Matrix formeMatrixInStufenformUm(Matrix matrix) {
         double[][] matrixArray = matrix.getMatrix();
 
-        for (int spaltenIndex = 0; spaltenIndex < matrixArray.length; spaltenIndex++) {
+        for (int diagonalElementIndex = 0; diagonalElementIndex < matrixArray.length; diagonalElementIndex++) {
 
-            tauscheSolangeZeilenBisWertAufDiagonaleNichtNullIst(matrixArray, spaltenIndex);
-            eliminiereElementeUnterDiagonalElement(spaltenIndex, matrixArray);
+            tauscheSolangeZeilenBisWertAufDiagonaleNichtNullIst(matrixArray, diagonalElementIndex);
+            eliminiereAlleElementeUnterDiagonalElement(diagonalElementIndex, matrixArray);
         }
 
         return new Matrix(matrixArray);
     }
 
-    private void eliminiereElementeUnterDiagonalElement(int spaltenIndex, double[][] matrixArray) {
+    private void eliminiereAlleElementeUnterDiagonalElement(int diagonalElementIndex, double[][] matrixArray) {
 
         for (int naechsterZeilenIndex = 1;
-             spaltenIndex + naechsterZeilenIndex < matrixArray.length;
+             diagonalElementIndex + naechsterZeilenIndex < matrixArray.length;
              naechsterZeilenIndex++) {
 
-            int indexVonNaechstemElementDasEliminiertWird = spaltenIndex + naechsterZeilenIndex;
+            int indexVonNaechsterZeileDieEliminiertWird = diagonalElementIndex + naechsterZeilenIndex;
 
-            double[] zeileInDerEliminiertWird = matrixArray[indexVonNaechstemElementDasEliminiertWird];
-            double[] zeileNachDerEntwickeltWird = matrixArray[spaltenIndex];
+            double[] zeileNachDerEntwickeltWird = matrixArray[diagonalElementIndex];
+            double[] zeileInDerEliminiertWird = matrixArray[indexVonNaechsterZeileDieEliminiertWird];
 
-            double koeffizient = gaussHilfsFunktionen.getKoeffizient(
-                    zeileNachDerEntwickeltWird[spaltenIndex],
-                    zeileInDerEliminiertWird[spaltenIndex]
-            );
+            double diagonalElement = zeileNachDerEntwickeltWird[diagonalElementIndex];
+            double zuEliminierendesElement = zeileInDerEliminiertWird[diagonalElementIndex];
 
-            eliminiereNaechstesElementInMatrix(
-                    matrixArray, indexVonNaechstemElementDasEliminiertWird,
-                    zeileNachDerEntwickeltWird, zeileInDerEliminiertWird,  koeffizient
-            );
+            double koeffizientDerMitZeileMultipliziertWird = zuEliminierendesElement / diagonalElement;
+
+            matrixArray[indexVonNaechsterZeileDieEliminiertWird] = eliminiereElement(
+                    zeileNachDerEntwickeltWird, zeileInDerEliminiertWird, koeffizientDerMitZeileMultipliziertWird);
         }
-    }
-
-    private void eliminiereNaechstesElementInMatrix(
-            double[][] matrixArray, int indexVonNaechstemElementDasEliminiertWird,
-            double[] zeileNachDerEntwickeltWird, double[] zeileInDerEliminiertWird, double koeffizient) {
-
-        matrixArray[indexVonNaechstemElementDasEliminiertWird] = gaussHilfsFunktionen.subtrahiereZeile(zeileNachDerEntwickeltWird,
-                zeileInDerEliminiertWird, koeffizient);
     }
 
     private void tauscheSolangeZeilenBisWertAufDiagonaleNichtNullIst(double[][] matrixArray, int zeileNachDerEntwickeltWird) {
@@ -60,5 +49,12 @@ public class Stufenform {
             gaussHilfsFunktionen.tauscheZeileVonMatrix(matrixArray, zeileNachDerEntwickeltWird, andereZeile);
             andereZeile++;
         }
+    }
+
+    private double[] eliminiereElement(double[] zeileNachDerEntwickeltWird, double[] zeileInDerEliminiertWird,
+                                       double koeffizientDerMitZeileMultipliziertWird) {
+
+        return gaussHilfsFunktionen.subtrahiereZeile(zeileNachDerEntwickeltWird,
+                zeileInDerEliminiertWird, koeffizientDerMitZeileMultipliziertWird);
     }
 }

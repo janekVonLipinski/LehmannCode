@@ -35,10 +35,7 @@ public class Diagonalform {
     private void subtrahiereVonJMinusKteZeileSodassElementNullWird(
             double[] zeileDieSubtrahiertWird, int j, double[] zeileVonDerSubtrahiertWird,
             double[][] matrixArray, int k) {
-        double koeffizient = gaussHilfsFunktionen.getKoeffizient(
-                zeileDieSubtrahiertWird[j],
-                zeileVonDerSubtrahiertWird[j]
-        );
+        double koeffizient = zeileVonDerSubtrahiertWird[j] / zeileDieSubtrahiertWird[j];
 
         matrixArray[j - k] = gaussHilfsFunktionen.subtrahiereZeile(zeileDieSubtrahiertWird,
                 zeileVonDerSubtrahiertWird, koeffizient);
