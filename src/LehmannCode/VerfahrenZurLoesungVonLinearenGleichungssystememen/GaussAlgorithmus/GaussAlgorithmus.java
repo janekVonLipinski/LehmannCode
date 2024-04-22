@@ -23,28 +23,39 @@ public class GaussAlgorithmus implements LGSLoeser {
         Vektor vektor = new Vektor(loesungsVektor);
         Matrix matrix = new Matrix(koeffizientenMatrix);
 
-        exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
+        werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(koeffizientenMatrix, vektor);
 
-        Matrix erweitereKoeffizientenMatrix = gaussHilfsFunktionen.erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
-
+        Matrix erweitereKoeffizientenMatrix = erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
         Matrix dreiecksMatrix = formeInStufenFormUm(erweitereKoeffizientenMatrix);
-        Matrix diagonalMatrix = formeMatrixInDiagonalFormUm(dreiecksMatrix);
+        Matrix diagonalMatrix = formeInDiagonalFormUm(dreiecksMatrix);
 
         return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(diagonalMatrix);
     }
 
     private Vektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(Matrix diagonalMatrix) {
         double[][] diagonalmatrixArray = diagonalMatrix.getMatrix();
-        double[] loesung = new double[diagonalmatrixArray.length];
+        double[] xVektor = new double[diagonalmatrixArray.length];
 
         for (int zeile = 0; zeile < diagonalmatrixArray.length; zeile++) {
-            loesung[zeile] = diagonalmatrixArray[zeile][diagonalMatrix.getAnzahlSpalten() - 1] / diagonalmatrixArray[zeile][zeile];
+
+            double elementVonVektor = diagonalmatrixArray[zeile][diagonalMatrix.getAnzahlSpalten() - 1];
+            double elementVonDiagonalMatrix = diagonalmatrixArray[zeile][zeile];
+
+            xVektor[zeile] = elementVonVektor / elementVonDiagonalMatrix;
         }
 
-        return new Vektor(loesung);
+        return new Vektor(xVektor);
     }
 
-    private Matrix formeMatrixInDiagonalFormUm(Matrix dreiecksMatrix) {
+    private Matrix erzeugeErweiterteKoeffizientenMatrix(Matrix matrix, Vektor vektor) {
+        return gaussHilfsFunktionen.erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
+    }
+
+    private void werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(Matrix koeffizientenMatrix, Vektor vektor) {
+        exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
+    }
+
+    private Matrix formeInDiagonalFormUm(Matrix dreiecksMatrix) {
         return diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix);
     }
 
