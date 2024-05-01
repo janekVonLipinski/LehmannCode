@@ -1,6 +1,6 @@
 package LehmannCode.Vektor;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 
 import java.util.Arrays;
 

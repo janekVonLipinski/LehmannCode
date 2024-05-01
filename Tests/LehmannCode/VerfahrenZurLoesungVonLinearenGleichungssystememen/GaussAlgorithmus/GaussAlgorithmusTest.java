@@ -1,9 +1,8 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 import LehmannCode.Vektor.Vektor;
-import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren.DeterminatenVerfahren;
-import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
+import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.MethodenZumTesten;
 import org.junit.jupiter.api.Test;
 

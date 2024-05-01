@@ -2,8 +2,7 @@ package LehmannCode.Matrix;
 
 import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachGauss;
 import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachLaplace;
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
-import LehmannCode.Matrix.MatrizenVerfahren.MatrixMultiplikator;
+import LehmannCode.Matrix.MatrixMultiplikation.MatrixMultiplikator;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.GaussHilfsFunktionen;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus.Stufenform;
 import org.junit.jupiter.api.Test;

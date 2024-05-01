@@ -1,8 +1,8 @@
 package LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen;
 
-import LehmannCode.Matrix.MatrixUtil.MatrixHilfsfunktionen;
 import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Determinante;
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
+import LehmannCode.Util.Zeile;
 
 public class DeterminantenRechnerNachLaplace implements Determinante {
 
@@ -14,7 +14,6 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
         int anzahlZeilen = m.getAnzahlZeilen();
         int anzahlSpalten = m.getAnzahlSpalten();
         double[][] matrix = m.getMatrix();
-        double ergebnis = 0;
 
         if (anzahlZeilen != anzahlSpalten) {
             throw new IllegalArgumentException("Matrix mus n x n sein");
@@ -28,10 +27,17 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
             return getDeterminanteVonZWeiKreuzZweiMatrix(matrix);
         }
 
-        for (int i = 0; i < anzahlSpalten; i++) {
+        double ergebnis = 0;
 
-            Matrix verkleinerteMatrix = new MatrixHilfsfunktionen().streicheErsteZeileUndUebergebeneSpalte(m, i);
-            double zunahme = Math.pow(-1, i) * matrix[0][i] * getDeterminante(verkleinerteMatrix, matrix[0][i]);
+        for (int spaltenIndex = 0; spaltenIndex < anzahlSpalten; spaltenIndex++) {
+
+            Matrix verkleinerteMatrix = streicheErsteZeileUndUebergebeneSpalte(m, spaltenIndex);
+
+            double zunahme =
+                    Math.pow(-1, spaltenIndex)
+                    * matrix[0][spaltenIndex]
+                    * getDeterminante(verkleinerteMatrix, matrix[0][spaltenIndex]);
+
             ergebnis += zunahme;
         }
 
@@ -40,5 +46,9 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
 
     private double getDeterminanteVonZWeiKreuzZweiMatrix(double[][] matrix) {
         return (matrix[0][0] * matrix[1][1]) - (matrix[1][0] * matrix[0][1]);
+    }
+
+    private Matrix streicheErsteZeileUndUebergebeneSpalte(Matrix m, int spalte) {
+        return new Zeile().streicheUebergebeneZeileUndSpalte(m, 0, spalte);
     }
 }

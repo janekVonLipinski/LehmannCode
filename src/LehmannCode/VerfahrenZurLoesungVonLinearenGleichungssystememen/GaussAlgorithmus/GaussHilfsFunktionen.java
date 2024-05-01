@@ -1,6 +1,6 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 import LehmannCode.Vektor.Vektor;
 
 import java.util.Arrays;

@@ -1,7 +1,6 @@
 package LehmannCode.Matrix;
 
-import LehmannCode.Matrix.MatrixUtil.MatrixHilfsfunktionen;
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.MatrixTransponierung.MatrixHilfsfunktionen;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

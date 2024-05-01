@@ -1,6 +1,6 @@
 package LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 
 public interface Determinante {
 

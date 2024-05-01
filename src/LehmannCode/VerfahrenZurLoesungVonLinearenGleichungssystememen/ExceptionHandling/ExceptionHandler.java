@@ -1,6 +1,6 @@
-package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler;
+package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 import LehmannCode.Vektor.Vektor;
 
 public class ExceptionHandler {

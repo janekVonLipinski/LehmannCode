@@ -1,7 +1,7 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
-import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
+import LehmannCode.Matrix.Matrix;
+import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import LehmannCode.Vektor.Vektor;
 

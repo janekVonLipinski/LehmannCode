@@ -1,19 +1,22 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.InverseMatrixVerfahren;
 
-import LehmannCode.Matrix.MatrixUtil.MatrixHilfsfunktionen;
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
-import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandler.ExceptionHandler;
+import LehmannCode.Matrix.MatrixTransponierung.MatrixHilfsfunktionen;
+import LehmannCode.Matrix.Matrix;
+import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 import LehmannCode.Vektor.Vektor;
+import LehmannCode.Util.Zeile;
 
 public class InverseMatrixVerfahren implements LGSLoeser {
 
     private final ExceptionHandler exceptionHandler;
     private final MatrixHilfsfunktionen matrixHilfsfunktionen;
+    private final Zeile zeilennnn;
 
-    public InverseMatrixVerfahren(ExceptionHandler exceptionHandler, MatrixHilfsfunktionen matrixHilfsfunktionen) {
+    public InverseMatrixVerfahren(ExceptionHandler exceptionHandler, MatrixHilfsfunktionen matrixHilfsfunktionen, Zeile zeile) {
         this.exceptionHandler = exceptionHandler;
         this.matrixHilfsfunktionen = matrixHilfsfunktionen;
+        this.zeilennnn = zeile;
     }
 
     @Override
@@ -54,10 +57,16 @@ public class InverseMatrixVerfahren implements LGSLoeser {
 
         for (int zeilenIndex = 0; zeilenIndex < matrix.length; zeilenIndex++) {
             for (int spaltenIndex = 0; spaltenIndex < matrix.length; spaltenIndex++) {
-                neueMatrix[zeilenIndex][spaltenIndex] = matrixHilfsfunktionen.getKofaktor(m, zeilenIndex, spaltenIndex);
+                neueMatrix[zeilenIndex][spaltenIndex] = getKofaktor(m, zeilenIndex, spaltenIndex);
             }
         }
 
         return new Matrix(neueMatrix);
+    }
+
+    private double getKofaktor(Matrix m, int zeile, int spalte) {
+
+        Matrix verkleinerteMatrix = zeilennnn.streicheUebergebeneZeileUndSpalte(m, zeile, spalte);
+        return Math.pow(-1, zeile + spalte) * verkleinerteMatrix.getDeterminante();
     }
 }

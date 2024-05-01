@@ -1,6 +1,6 @@
 package LehmannCode.Torus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
+import LehmannCode.Matrix.Matrix;
 import LehmannCode.Vektor.Vektor;
 
 import javax.swing.*;

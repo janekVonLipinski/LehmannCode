@@ -1,7 +1,8 @@
-package LehmannCode.Matrix.MatrizenVerfahren;
+package LehmannCode.Matrix;
 
 import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachLaplace;
 import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Determinante;
+import LehmannCode.Matrix.MatrixMultiplikation.MatrixMultiplikator;
 
 import java.util.Arrays;
 

@@ -1,4 +1,6 @@
-package LehmannCode.Matrix.MatrizenVerfahren;
+package LehmannCode.Matrix.MatrixMultiplikation;
+
+import LehmannCode.Matrix.Matrix;
 
 public class MatrixMultiplikator {
 

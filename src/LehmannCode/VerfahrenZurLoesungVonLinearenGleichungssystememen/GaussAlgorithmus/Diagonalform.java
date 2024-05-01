@@ -1,7 +1,6 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
-import LehmannCode.Vektor.Vektor;
+import LehmannCode.Matrix.Matrix;
 
 public class Diagonalform {
 
