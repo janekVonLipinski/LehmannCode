@@ -30,7 +30,7 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
 
         for (int i = 0; i < anzahlSpalten; i++) {
 
-            Matrix verkleinerteMatrix = new MatrixHilfsfunktionen().getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, i);
+            Matrix verkleinerteMatrix = new MatrixHilfsfunktionen().streicheErsteZeileUndUebergebeneSpalte(m, i);
             double zunahme = Math.pow(-1, i) * matrix[0][i] * getDeterminante(verkleinerteMatrix, matrix[0][i]);
             ergebnis += zunahme;
         }

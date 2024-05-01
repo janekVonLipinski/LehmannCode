@@ -4,34 +4,72 @@ import LehmannCode.Matrix.MatrizenVerfahren.Matrix;
 
 public class MatrixHilfsfunktionen {
 
-    public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int spalte) {
-        return getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, 0, spalte);
+    public Matrix streicheErsteZeileUndUebergebeneSpalte(Matrix m, int spalte) {
+        return streicheUebergebeneZeileUndSpalte(m, 0, spalte);
     }
 
-    public Matrix getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(Matrix m, int zeile, int gestricheneSpalte) {
+    public Matrix streicheUebergebeneZeileUndSpalte(Matrix m, int gestricheneZeile, int gestricheneSpalteIndex) {
         int anzahlSpalten = m.getAnzahlSpalten();
         int anzahlZeilen = m.getAnzahlZeilen();
-        double[][] matrix = m.getMatrix();
 
+        double[][] matrix = m.getMatrix();
         double[][] neueMatrix = new double[anzahlZeilen - 1][anzahlSpalten - 1];
         double[][] alteMatrix = matrix.clone();
 
-        int alteMatrixZeile = 0;
+        int alteMatrixZeilenIndex = 0;
+
         for (int zeilenIndex = 0; zeilenIndex < neueMatrix.length; zeilenIndex++) {
-            if (zeilenIndex == zeile) {
-                alteMatrixZeile++;
+
+            if (istZeileUebersprungeneZeile(gestricheneZeile, zeilenIndex)) {
+                alteMatrixZeilenIndex = ueberspringeZeile(alteMatrixZeilenIndex);
             }
-            int alteMatrixSpalte = 0;
-            for (int spaltenIndex = 0; spaltenIndex < neueMatrix.length; spaltenIndex++) {
-                if (alteMatrixSpalte == gestricheneSpalte) {
-                    alteMatrixSpalte++;
-                }
-                neueMatrix[zeilenIndex][spaltenIndex] = alteMatrix[alteMatrixZeile][alteMatrixSpalte];
-                alteMatrixSpalte++;
-            }
-            alteMatrixZeile++;
+
+            ersetzeSpalte(gestricheneSpalteIndex, zeilenIndex, alteMatrixZeilenIndex, neueMatrix, alteMatrix);
+            alteMatrixZeilenIndex++;
         }
+
         return new Matrix(neueMatrix);
+    }
+
+    private void ersetzeSpalte(int gestricheneSpalteIndex, int zeilenIndex, int alteMatrixZeilenIndex,
+                               double[][] neueMatrix, double[][] alteMatrix) {
+
+        int alteMatrixSpalteIndex = 0;
+
+        for (int spaltenIndex = 0; spaltenIndex < neueMatrix.length; spaltenIndex++) {
+
+            if (istUebersprungeneSpalte(gestricheneSpalteIndex, alteMatrixSpalteIndex)) {
+                alteMatrixSpalteIndex = uebersrpingeSpalte(alteMatrixSpalteIndex);
+            }
+
+            ersetzteElementInSpalte(alteMatrixSpalteIndex, spaltenIndex,
+                    neueMatrix[zeilenIndex], alteMatrix[alteMatrixZeilenIndex]);
+
+            alteMatrixSpalteIndex++;
+        }
+    }
+
+    private void ersetzteElementInSpalte(int alteMatrixSpaltenIndex, int spaltenIndex,
+                                         double[] neueMatrix, double[] alteMatrix) {
+        neueMatrix[spaltenIndex] = alteMatrix[alteMatrixSpaltenIndex];
+    }
+
+    private static int uebersrpingeSpalte(int alteMatrixSpalte) {
+        alteMatrixSpalte++;
+        return alteMatrixSpalte;
+    }
+
+    private static boolean istUebersprungeneSpalte(int gestricheneSpalte, int alteMatrixSpalte) {
+        return alteMatrixSpalte == gestricheneSpalte;
+    }
+
+    private boolean istZeileUebersprungeneZeile(int zeile, int zeilenIndex) {
+        return zeilenIndex == zeile;
+    }
+
+    private int ueberspringeZeile(int alteMatrixZeile) {
+        alteMatrixZeile++;
+        return alteMatrixZeile;
     }
 
     public Matrix transponiere(Matrix m) {
@@ -54,7 +92,7 @@ public class MatrixHilfsfunktionen {
 
     public double getKofaktor(Matrix m, int zeile, int spalte) {
 
-        Matrix verkleinerteMatrix = getMatrixMitGestrichenerErstenZeileUndUebergebenerSpalte(m, zeile, spalte);
+        Matrix verkleinerteMatrix = streicheUebergebeneZeileUndSpalte(m, zeile, spalte);
         return Math.pow(-1, zeile + spalte) * verkleinerteMatrix.getDeterminante();
     }
 }
