@@ -1,12 +1,12 @@
-package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
+package LehmannCode.Matrizen.MamaMatrix.MatrixUmformung;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
 public class Stufenform {
 
-    private final GaussHilfsFunktionen gaussHilfsFunktionen;
+    private final Hilfe gaussHilfsFunktionen;
 
-    public Stufenform(GaussHilfsFunktionen gaussHilfsFunktionen) {
+    public Stufenform(Hilfe gaussHilfsFunktionen) {
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 

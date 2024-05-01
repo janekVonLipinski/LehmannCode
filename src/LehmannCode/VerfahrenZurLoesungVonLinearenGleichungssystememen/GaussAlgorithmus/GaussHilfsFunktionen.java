@@ -1,15 +1,15 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Vektor.IVektor;
 import LehmannCode.Vektor.Vektor;
-
-import java.util.Arrays;
 
 public class GaussHilfsFunktionen {
 
-    protected Matrix erzeugeErweiterteKoeffizientenMatrix(Matrix m, Vektor v) {
-        double[][] matrix = new Matrix(m).getMatrix();
-        double[] vektor = new Vektor(v).getVektor();
+    protected IMatrix erzeugeErweiterteKoeffizientenMatrix(IMatrix m, IVektor v) {
+        double[][] matrix = new Matrix((Matrix) m).getMatrix();
+        double[] vektor = new Vektor((Vektor) v).getVektor();
 
         double[][] erweiterteKoeffizientenMatrix = new double[m.getAnzahlZeilen()][m.getAnzahlSpalten() + 1];
 
@@ -21,44 +21,5 @@ public class GaussHilfsFunktionen {
         }
 
         return new Matrix(erweiterteKoeffizientenMatrix);
-    }
-
-    protected double[] subtrahiereZeile(double[] ersteZeile, double[] zweiteZeile,
-                                      double koeffiezient) {
-
-        double[] multiplizierteZeile = multipliziereZeile(ersteZeile, koeffiezient);
-
-        double[] returnArray = new double[ersteZeile.length];
-        for (int i = 0; i < ersteZeile.length; i++) {
-            returnArray[i] = zweiteZeile[i] - multiplizierteZeile[i];
-        }
-
-        return returnArray;
-    }
-
-    protected boolean istWertAufDiagonaleNull(double[][] matrix, int j) {
-        return matrix[j][j] == 0;
-    }
-
-    private double[] multipliziereZeile(double[] zeile, double koeffizient)  {
-        double[] copy = Arrays.copyOf(zeile, zeile.length);
-        return Arrays.stream(copy)
-                .map(i -> i * koeffizient)
-                .toArray();
-    }
-
-    protected void tauscheZeileVonMatrix(double[][] matrixArray, int indexErsteZeile, int indexZweiteZeile) {
-
-        double[] ersteZeile = matrixArray[indexErsteZeile];
-        double[] zweiteZeile = matrixArray[indexZweiteZeile];
-
-        matrixArray[indexErsteZeile] = zweiteZeile;
-        matrixArray[indexZweiteZeile] = ersteZeile;
-    }
-
-    private void tauscheZeileVonVektor(double[] vektor, int ersterIndex, int zweiterIndex) {
-        double temp = vektor[ersterIndex];
-        vektor[ersterIndex] = vektor[zweiterIndex];
-        vektor[zweiterIndex] = temp;
     }
 }

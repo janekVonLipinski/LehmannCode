@@ -1,16 +1,17 @@
-package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
+package LehmannCode.Matrizen.MamaMatrix.MatrixUmformung;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
 public class Diagonalform {
 
-    private final GaussHilfsFunktionen gaussHilfsFunktionen;
+    private final Hilfe gaussHilfsFunktionen;
 
-    public Diagonalform(GaussHilfsFunktionen gaussHilfsFunktionen) {
+    public Diagonalform(Hilfe gaussHilfsFunktionen) {
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
-    protected Matrix formeMatrixInDiagonalFormUm(Matrix matrix) {
+    public Matrix formeMatrixInDiagonalFormUm(IMatrix matrix) {
 
         double[][] matrixArray = matrix.getMatrix();
 

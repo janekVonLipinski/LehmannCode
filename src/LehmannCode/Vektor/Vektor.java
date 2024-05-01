@@ -1,10 +1,11 @@
 package LehmannCode.Vektor;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
 import java.util.Arrays;
 
-public class Vektor {
+public class Vektor implements IVektor {
 
     private final double[] vektorWerte;
 
@@ -16,19 +17,32 @@ public class Vektor {
         this.vektorWerte = Arrays.copyOf(v.vektorWerte, v.vektorWerte.length);
     }
 
+    @Override
     public double[] getVektor() {
         return vektorWerte;
     }
 
-    public Vektor multipliziere(Matrix matrix) {
+    @Override
+    public IVektor multipliziere(IMatrix matrix) {
 
-        Matrix vektorAlsMatrix = transformiereVektorInMatrix();
-        Matrix neueMatrix = matrix.multipliziere(vektorAlsMatrix);
+        IMatrix vektorAlsMatrix = transformiereVektorInMatrix();
+        IMatrix neueMatrix = matrix.multipliziere(vektorAlsMatrix);
 
         return transfromiereMatrixInVektor(neueMatrix);
     }
 
-    private Vektor transfromiereMatrixInVektor(Matrix neueMatrix) {
+    public IVektor subtrahiere(IVektor v2) {
+        double[] werteVonV2 = v2.getVektor();
+        double[] differenz = new double[werteVonV2.length];
+
+        for (int i = 0; i < werteVonV2.length; i++) {
+            differenz[i] = werteVonV2[i] - vektorWerte[i];
+        }
+
+        return new Vektor(differenz);
+    }
+
+    private IVektor transfromiereMatrixInVektor(IMatrix neueMatrix) {
         double[][] array = neueMatrix.getMatrix();
         double[] vektor = new double[array.length];
 
@@ -39,7 +53,7 @@ public class Vektor {
         return new Vektor(vektor);
     }
 
-    private Matrix transformiereVektorInMatrix() {
+    private IMatrix transformiereVektorInMatrix() {
         double[][] vektorAlsArray = new double[vektorWerte.length][1];
 
         for (int i = 0; i < vektorWerte.length; i++) {
@@ -47,17 +61,6 @@ public class Vektor {
         }
 
         return new Matrix(vektorAlsArray);
-    }
-
-    public Vektor subtrahiere(Vektor v2) {
-        double[] werteVonV2 = v2.getVektor();
-        double[] differenz = new double[werteVonV2.length];
-
-        for (int i = 0; i < werteVonV2.length; i++) {
-            differenz[i] = werteVonV2[i] - vektorWerte[i];
-        }
-
-        return new Vektor(differenz);
     }
 
     @Override

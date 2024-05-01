@@ -1,39 +1,39 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.GaussAlgorithmus;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Vektor.IVektor;
+import LehmannCode.Vektor.Vektor;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
-import LehmannCode.Vektor.Vektor;
 
 public class GaussAlgorithmus implements LGSLoeser {
-    private final Stufenform stufenform;
-    private final Diagonalform diagonalform;
     private final ExceptionHandler exceptionHandler;
     private final GaussHilfsFunktionen gaussHilfsFunktionen;
 
-    public GaussAlgorithmus(Stufenform stufenform, Diagonalform diagonalform,
-                            ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
-        this.stufenform = stufenform;
-        this.diagonalform = diagonalform;
+    public GaussAlgorithmus(ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
         this.exceptionHandler = exceptionHandler;
         this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
     @Override
-    public Vektor loeseGleichungssystem(Matrix koeffizientenMatrix, Vektor loesungsVektor) {
-        Vektor vektor = new Vektor(loesungsVektor);
-        Matrix matrix = new Matrix(koeffizientenMatrix);
+    public IVektor loeseGleichungssystem(IMatrix koeffizientenMatrix, IVektor loesungsVektor) {
+        IVektor vektor = new Vektor((Vektor) loesungsVektor);
+        IMatrix matrix = new Matrix((Matrix) koeffizientenMatrix);
 
-        werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(koeffizientenMatrix, vektor);
+        werfeExceptionFallsGleichungssystemNichtValideIst(matrix, vektor);
 
-        Matrix erweitereKoeffizientenMatrix = erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
-        Matrix dreiecksMatrix = formeInStufenFormUm(erweitereKoeffizientenMatrix);
-        Matrix diagonalMatrix = formeInDiagonalFormUm(dreiecksMatrix);
+        IMatrix erweitereKoeffizientenMatrix = erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
+        IMatrix dreiecksMatrix = erweitereKoeffizientenMatrix.getStufenForm();
+
+        //werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(dreiecksMatrix);
+
+        IMatrix diagonalMatrix = dreiecksMatrix.getDiagonalForm();
 
         return berechneXVektorAusDiagonalMatrixUndLoesungsvektor(diagonalMatrix);
     }
 
-    private Vektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(Matrix diagonalMatrix) {
+    private IVektor berechneXVektorAusDiagonalMatrixUndLoesungsvektor(IMatrix diagonalMatrix) {
         double[][] diagonalmatrixArray = diagonalMatrix.getMatrix();
         double[] xVektor = new double[diagonalmatrixArray.length];
 
@@ -48,19 +48,15 @@ public class GaussAlgorithmus implements LGSLoeser {
         return new Vektor(xVektor);
     }
 
-    private Matrix erzeugeErweiterteKoeffizientenMatrix(Matrix matrix, Vektor vektor) {
+    private IMatrix erzeugeErweiterteKoeffizientenMatrix(IMatrix matrix, IVektor vektor) {
         return gaussHilfsFunktionen.erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
     }
 
-    private void werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(Matrix koeffizientenMatrix, Vektor vektor) {
+    private void werfeExceptionFallsGleichungssystemNichtValideIst(IMatrix koeffizientenMatrix, IVektor vektor) {
         exceptionHandler.istGleichungssystemValide(koeffizientenMatrix, vektor);
     }
 
-    private Matrix formeInDiagonalFormUm(Matrix dreiecksMatrix) {
-        return diagonalform.formeMatrixInDiagonalFormUm(dreiecksMatrix);
-    }
-
-    private Matrix formeInStufenFormUm(Matrix matrix) {
-        return stufenform.formeMatrixInStufenformUm(matrix);
+    private void werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(IMatrix matrix) {
+        exceptionHandler.istGleichungssystemEindeutigLoesbar(matrix);
     }
 }

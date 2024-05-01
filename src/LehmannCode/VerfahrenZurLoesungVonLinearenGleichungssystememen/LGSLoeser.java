@@ -1,9 +1,9 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
-import LehmannCode.Matrix.Matrix;
-import LehmannCode.Vektor.Vektor;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Vektor.IVektor;
 
 public interface LGSLoeser {
 
-    Vektor loeseGleichungssystem(Matrix m,Vektor v);
+    IVektor loeseGleichungssystem(IMatrix m, IVektor v);
 }

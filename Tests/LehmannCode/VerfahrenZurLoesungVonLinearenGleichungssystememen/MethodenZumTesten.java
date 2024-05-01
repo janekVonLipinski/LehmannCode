@@ -1,31 +1,11 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 import LehmannCode.Vektor.Vektor;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class MethodenZumTesten {
-
-    public static boolean sindWerteKleinerAlsDiffernz(Vektor v1, Vektor v2) {
-        int zeilenAnzahl = v1.getVektor().length;
-        double[] differenz = v1.subtrahiere(v2).getVektor();
-        double[] abweichung = getAbweichungsArray(zeilenAnzahl);
-
-        for (int i = 0; i < zeilenAnzahl; i++) {
-            if (Math.abs(differenz[i]) > abweichung[i]) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public static double[] getAbweichungsArray(int zeilenAnzahl) {
-        double[] abweichungsVektor = new double[zeilenAnzahl];
-        Arrays.fill(abweichungsVektor, 0.1);
-        return abweichungsVektor;
-    }
 
     public static Matrix generateQuadratischeTestMatrix(int zeilenAnzahl) {
         double[][] testMatrix = new double[zeilenAnzahl][zeilenAnzahl];

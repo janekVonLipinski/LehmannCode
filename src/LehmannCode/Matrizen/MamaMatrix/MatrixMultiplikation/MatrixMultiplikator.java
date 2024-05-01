@@ -1,11 +1,12 @@
-package LehmannCode.Matrix.MatrixMultiplikation;
+package LehmannCode.Matrizen.MamaMatrix.MatrixMultiplikation;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
 public class MatrixMultiplikator {
 
-    protected Matrix multipliziere(Matrix m1, Matrix m2) {
-        Matrix ergebnis = new Matrix(new double[m1.getAnzahlZeilen()][m2.getAnzahlSpalten()]);
+    public IMatrix multipliziere(IMatrix m1, IMatrix m2) {
+        IMatrix ergebnis = new Matrix(new double[m1.getAnzahlZeilen()][m2.getAnzahlSpalten()]);
 
         if (m1.getAnzahlSpalten() != m2.getAnzahlZeilen()) {
             throw new IllegalArgumentException(
@@ -24,8 +25,8 @@ public class MatrixMultiplikator {
         return ergebnis;
     }
 
-    protected Matrix multipliziere(Matrix m, double skalar) {
-        Matrix kopierteMatrix = new Matrix(m);
+    public IMatrix multipliziere(IMatrix m, double skalar) {
+        IMatrix kopierteMatrix = new Matrix((Matrix) m);
         double[][] matrix = kopierteMatrix.getMatrix();
 
         for (int i = 0; i < matrix.length; i++) {

@@ -1,12 +1,11 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling;
 
-import LehmannCode.Matrix.Matrix;
-import LehmannCode.Vektor.Vektor;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Vektor.IVektor;
 
 public class ExceptionHandler {
 
-
-    public void istGleichungssystemValide(Matrix matrix, Vektor vektor) {
+    public void istGleichungssystemValide(IMatrix matrix, IVektor vektor) {
         if (matrix.getAnzahlSpalten() != matrix.getAnzahlZeilen()) {
             throw new IllegalArgumentException("Matrix muss quadratisch sein");
         }
@@ -16,7 +15,7 @@ public class ExceptionHandler {
         }
     }
 
-    public void istGleichungssystemEindeutigLoesbar(Matrix matrix) {
+    public void istGleichungssystemEindeutigLoesbar(IMatrix matrix) {
         if (matrix.getDeterminante() == 0) {
             throw new IllegalArgumentException("Determinante ist 0, Gleichungssystem ist nicht eindeutig lösbar");
         }

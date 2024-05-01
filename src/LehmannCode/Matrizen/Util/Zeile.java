@@ -1,10 +1,11 @@
-package LehmannCode.Util;
+package LehmannCode.Matrizen.Util;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
 public class Zeile {
 
-    public Matrix streicheUebergebeneZeileUndSpalte(Matrix m, int gestricheneZeile, int gestricheneSpalteIndex) {
+    public IMatrix streicheUebergebeneZeileUndSpalte(IMatrix m, int gestricheneZeile, int gestricheneSpalteIndex) {
         int anzahlSpalten = m.getAnzahlSpalten();
         int anzahlZeilen = m.getAnzahlZeilen();
 

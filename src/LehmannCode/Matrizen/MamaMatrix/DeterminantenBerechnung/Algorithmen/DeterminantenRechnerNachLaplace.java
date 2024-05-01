@@ -1,16 +1,16 @@
-package LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Algorithmen;
+package LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Algorithmen;
 
-import LehmannCode.Matrix.MatrizenVerfahren.DeterminantenBerechnung.Determinante;
-import LehmannCode.Matrix.Matrix;
-import LehmannCode.Util.Zeile;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Determinante;
+import LehmannCode.Matrizen.Util.Zeile;
 
 public class DeterminantenRechnerNachLaplace implements Determinante {
 
-    public double getDeterminante(Matrix m) {
+    public double getDeterminante(IMatrix m) {
         return getDeterminante(m, 1);
     }
 
-    private double getDeterminante(Matrix m, double faktor) {
+    private double getDeterminante(IMatrix m, double faktor) {
         int anzahlZeilen = m.getAnzahlZeilen();
         int anzahlSpalten = m.getAnzahlSpalten();
         double[][] matrix = m.getMatrix();
@@ -31,7 +31,7 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
 
         for (int spaltenIndex = 0; spaltenIndex < anzahlSpalten; spaltenIndex++) {
 
-            Matrix verkleinerteMatrix = streicheErsteZeileUndUebergebeneSpalte(m, spaltenIndex);
+            IMatrix verkleinerteMatrix = streicheErsteZeileUndUebergebeneSpalte(m, spaltenIndex);
 
             double zunahme =
                     Math.pow(-1, spaltenIndex)
@@ -48,7 +48,7 @@ public class DeterminantenRechnerNachLaplace implements Determinante {
         return (matrix[0][0] * matrix[1][1]) - (matrix[1][0] * matrix[0][1]);
     }
 
-    private Matrix streicheErsteZeileUndUebergebeneSpalte(Matrix m, int spalte) {
+    private IMatrix streicheErsteZeileUndUebergebeneSpalte(IMatrix m, int spalte) {
         return new Zeile().streicheUebergebeneZeileUndSpalte(m, 0, spalte);
     }
 }

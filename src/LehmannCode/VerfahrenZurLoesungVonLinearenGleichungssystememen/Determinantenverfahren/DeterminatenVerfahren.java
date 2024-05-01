@@ -1,9 +1,11 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Vektor.IVektor;
+import LehmannCode.Vektor.Vektor;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
-import LehmannCode.Vektor.Vektor;
 
 public class DeterminatenVerfahren implements LGSLoeser {
 
@@ -14,7 +16,7 @@ public class DeterminatenVerfahren implements LGSLoeser {
     }
 
     @Override
-    public Vektor loeseGleichungssystem(Matrix koeffizientenMatrix, Vektor loesungsVektor) {
+    public IVektor loeseGleichungssystem(IMatrix koeffizientenMatrix, IVektor loesungsVektor) {
         int anzahlZeilen = koeffizientenMatrix.getAnzahlZeilen();
         double[] xVektor = new double[anzahlZeilen];
 
@@ -24,16 +26,16 @@ public class DeterminatenVerfahren implements LGSLoeser {
         double determinanteVonKoeffizientenMatrix = koeffizientenMatrix.getDeterminante();
 
         for (int i = 0; i < anzahlZeilen; i++) {
-            Matrix matrixMitEingetztemVektor = setzeVektorInMatrixEin(koeffizientenMatrix, loesungsVektor, i);
+            IMatrix matrixMitEingetztemVektor = setzeVektorInMatrixEin(koeffizientenMatrix, loesungsVektor, i);
             xVektor[i] = matrixMitEingetztemVektor.getDeterminante() / determinanteVonKoeffizientenMatrix;
         }
 
         return new Vektor(xVektor);
     }
 
-    protected Matrix setzeVektorInMatrixEin(Matrix koeffizientMatrix, Vektor loesungsVektor, int spaltenIndex) {
-        Matrix matrix = new Matrix(koeffizientMatrix);
-        double[][] matrixArray = matrix.getMatrix().clone();
+    protected IMatrix setzeVektorInMatrixEin(IMatrix koeffizientMatrix, IVektor loesungsVektor, int spaltenIndex) {
+        Matrix matrix = new Matrix((Matrix) koeffizientMatrix);
+        double[][] matrixArray = matrix.getMatrix();
         double[] loesungVektorArray = loesungsVektor.getVektor();
 
         for (int i = 0; i < matrixArray.length; i++) {

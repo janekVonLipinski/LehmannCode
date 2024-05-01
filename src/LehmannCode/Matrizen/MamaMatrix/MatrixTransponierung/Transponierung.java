@@ -1,11 +1,12 @@
-package LehmannCode.Matrix.MatrixTransponierung;
+package LehmannCode.Matrizen.MamaMatrix.MatrixTransponierung;
 
-import LehmannCode.Matrix.Matrix;
+import LehmannCode.Matrizen.IMatrix;
+import LehmannCode.Matrizen.MamaMatrix.Matrix;
 
-public class MatrixHilfsfunktionen {
+public class Transponierung {
 
-    public Matrix transponiere(Matrix m) {
-        Matrix matrixKopie = new Matrix(m);
+    public IMatrix transponiere(IMatrix m) {
+        IMatrix matrixKopie = new Matrix((Matrix) m);
         double[][] matrix = matrixKopie.getMatrix();
 
         for (int zeilenIndex = 0; zeilenIndex < matrix.length; zeilenIndex++) {
