@@ -1,7 +1,7 @@
-package LehmannCode.Matrizen.MamaMatrix.MatrixMultiplikation;
+package LehmannCode.Matrizen.MatrixImplementierung.MatrixMultiplikation;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 public class MatrixMultiplikator {
 

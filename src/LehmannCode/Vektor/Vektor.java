@@ -1,7 +1,7 @@
 package LehmannCode.Vektor;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 import java.util.Arrays;
 

@@ -1,6 +1,6 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 import LehmannCode.Vektor.Vektor;
 
 import java.util.Random;

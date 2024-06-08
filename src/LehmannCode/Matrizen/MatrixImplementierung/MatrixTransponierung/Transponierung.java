@@ -1,7 +1,7 @@
-package LehmannCode.Matrizen.MamaMatrix.MatrixTransponierung;
+package LehmannCode.Matrizen.MatrixImplementierung.MatrixTransponierung;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 public class Transponierung {
 

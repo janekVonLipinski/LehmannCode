@@ -1,7 +1,7 @@
 package LehmannCode.Matrizen.Util;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 public class Zeile {
 

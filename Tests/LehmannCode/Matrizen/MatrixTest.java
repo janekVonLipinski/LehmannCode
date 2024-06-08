@@ -1,14 +1,14 @@
 package LehmannCode.Matrizen;
 
-import LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachGauss;
-import LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachLaplace;
-import LehmannCode.Matrizen.MamaMatrix.Inverse.InverseMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
-import LehmannCode.Matrizen.MamaMatrix.MatrixMultiplikation.MatrixMultiplikator;
-import LehmannCode.Matrizen.MamaMatrix.MatrixTransponierung.Transponierung;
-import LehmannCode.Matrizen.MamaMatrix.MatrixUmformung.Diagonalform;
-import LehmannCode.Matrizen.MamaMatrix.MatrixUmformung.Hilfe;
-import LehmannCode.Matrizen.MamaMatrix.MatrixUmformung.Stufenform;
+import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachGauss;
+import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachLaplace;
+import LehmannCode.Matrizen.MatrixImplementierung.Inverse.InverseMatrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixMultiplikation.MatrixMultiplikator;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixTransponierung.Transponierung;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Diagonalform;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Hilfe;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Stufenform;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

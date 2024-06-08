@@ -1,6 +1,6 @@
-package LehmannCode.Matrizen.MamaMatrix.MatrixUmformung;
+package LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung;
 
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 public class Stufenform {
 

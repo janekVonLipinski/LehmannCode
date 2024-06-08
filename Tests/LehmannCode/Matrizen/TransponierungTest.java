@@ -1,7 +1,7 @@
 package LehmannCode.Matrizen;
 
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
-import LehmannCode.Matrizen.MamaMatrix.MatrixTransponierung.Transponierung;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixTransponierung.Transponierung;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,7 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 import LehmannCode.Vektor.IVektor;
 import LehmannCode.Vektor.Vektor;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren.DeterminatenVerfahren;

@@ -1,4 +1,4 @@
-package LehmannCode.Matrizen.MamaMatrix.MatrixUmformung;
+package LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung;
 
 import java.util.Arrays;
 

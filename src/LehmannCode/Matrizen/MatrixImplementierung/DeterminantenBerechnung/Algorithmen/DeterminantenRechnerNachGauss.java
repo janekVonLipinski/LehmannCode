@@ -1,8 +1,8 @@
-package LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Algorithmen;
+package LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen;
 
 import LehmannCode.Matrizen.IMatrix;
-import LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung.Determinante;
-import LehmannCode.Matrizen.MamaMatrix.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Determinante;
+import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 public class DeterminantenRechnerNachGauss implements Determinante {
 

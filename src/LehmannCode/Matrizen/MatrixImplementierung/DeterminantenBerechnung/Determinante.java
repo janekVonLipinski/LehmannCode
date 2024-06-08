@@ -1,4 +1,4 @@
-package LehmannCode.Matrizen.MamaMatrix.DeterminantenBerechnung;
+package LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung;
 
 import LehmannCode.Matrizen.IMatrix;
 
