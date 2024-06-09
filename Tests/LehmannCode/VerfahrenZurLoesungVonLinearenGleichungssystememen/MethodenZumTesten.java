@@ -1,6 +1,13 @@
 package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
 
+import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachGauss;
+import LehmannCode.Matrizen.MatrixImplementierung.Inverse.InverseMatrix;
 import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixMultiplikation.MatrixMultiplikator;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixTransponierung.Transponierung;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Diagonalform;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Hilfe;
+import LehmannCode.Matrizen.MatrixImplementierung.MatrixUmformung.Stufenform;
 import LehmannCode.Vektor.Vektor;
 
 import java.util.Random;
@@ -20,7 +27,9 @@ public class MethodenZumTesten {
                     testMatrix[i][j] = random.nextDouble(1, 100000);
                 }
             }
-        } while (new Matrix(testMatrix).getDeterminante() == 0);
+        } while (new Matrix(testMatrix, new DeterminantenRechnerNachGauss(),
+                new MatrixMultiplikator(), new InverseMatrix(), new Stufenform(new Hilfe()),
+                new Diagonalform(new Hilfe()), new Transponierung()).getDeterminante() < 0.01);
 
         return new Matrix(testMatrix);
     }

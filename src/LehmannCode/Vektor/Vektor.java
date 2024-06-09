@@ -4,6 +4,7 @@ import LehmannCode.Matrizen.IMatrix;
 import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class Vektor implements IVektor {
 
@@ -65,6 +66,8 @@ public class Vektor implements IVektor {
 
     @Override
     public String toString() {
-        return Arrays.toString(vektorWerte);
+        return Arrays.stream(vektorWerte)
+                .mapToObj(value -> Double.toString(value) + "\n")
+                .collect(Collectors.joining());
     }
 }

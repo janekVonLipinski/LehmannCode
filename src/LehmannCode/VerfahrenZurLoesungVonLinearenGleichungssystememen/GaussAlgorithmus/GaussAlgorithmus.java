@@ -9,11 +9,9 @@ import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.LGSLoeser;
 
 public class GaussAlgorithmus implements LGSLoeser {
     private final ExceptionHandler exceptionHandler;
-    private final GaussHilfsFunktionen gaussHilfsFunktionen;
 
-    public GaussAlgorithmus(ExceptionHandler exceptionHandler, GaussHilfsFunktionen gaussHilfsFunktionen) {
+    public GaussAlgorithmus(ExceptionHandler exceptionHandler) {
         this.exceptionHandler = exceptionHandler;
-        this.gaussHilfsFunktionen = gaussHilfsFunktionen;
     }
 
     @Override
@@ -26,7 +24,7 @@ public class GaussAlgorithmus implements LGSLoeser {
         IMatrix erweitereKoeffizientenMatrix = erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
         IMatrix dreiecksMatrix = erweitereKoeffizientenMatrix.getStufenForm();
 
-        //werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(dreiecksMatrix);
+        werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(dreiecksMatrix);
 
         IMatrix diagonalMatrix = dreiecksMatrix.getDiagonalForm();
 
@@ -48,8 +46,20 @@ public class GaussAlgorithmus implements LGSLoeser {
         return new Vektor(xVektor);
     }
 
-    private IMatrix erzeugeErweiterteKoeffizientenMatrix(IMatrix matrix, IVektor vektor) {
-        return gaussHilfsFunktionen.erzeugeErweiterteKoeffizientenMatrix(matrix, vektor);
+    private IMatrix erzeugeErweiterteKoeffizientenMatrix(IMatrix m, IVektor v) {
+        double[][] matrix = new Matrix((Matrix) m).getMatrix();
+        double[] vektor = new Vektor((Vektor) v).getVektor();
+
+        double[][] erweiterteKoeffizientenMatrix = new double[m.getAnzahlZeilen()][m.getAnzahlSpalten() + 1];
+
+        for (int zeile = 0; zeile < m.getAnzahlZeilen(); zeile++) {
+            for (int spalte = 0; spalte < m.getAnzahlSpalten(); spalte++) {
+                erweiterteKoeffizientenMatrix[zeile][spalte] = matrix[zeile][spalte];
+            }
+            erweiterteKoeffizientenMatrix[zeile][m.getAnzahlSpalten()] = vektor[zeile];
+        }
+
+        return new Matrix(erweiterteKoeffizientenMatrix);
     }
 
     private void werfeExceptionFallsGleichungssystemNichtValideIst(IMatrix koeffizientenMatrix, IVektor vektor) {
@@ -57,6 +67,6 @@ public class GaussAlgorithmus implements LGSLoeser {
     }
 
     private void werfeExceptionFallsGleichungssystemNichtEindeutigLoesbarIst(IMatrix matrix) {
-        exceptionHandler.istGleichungssystemEindeutigLoesbar(matrix);
+        exceptionHandler.hatMatrixNullZeile(matrix);
     }
 }
