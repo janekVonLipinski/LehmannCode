@@ -1,5 +1,6 @@
 package LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen;
 
+import LehmannCode.Matrizen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.Matrizen.IMatrix;
 import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Determinante;
 import LehmannCode.Matrizen.Util.Zeile;
@@ -7,6 +8,7 @@ import LehmannCode.Matrizen.Util.Zeile;
 public class DeterminantenRechnerNachLaplace implements Determinante {
 
     public double getDeterminante(IMatrix m) {
+        new ExceptionHandler().throwExceptionFallsMatrixNichtQuadratischIst(m);
         return getDeterminante(m, 1);
     }
 

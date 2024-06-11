@@ -1,4 +1,4 @@
-package LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen;
+package LehmannCode.OtherStuff;
 
 import LehmannCode.Matrizen.MatrixImplementierung.DeterminantenBerechnung.Algorithmen.DeterminantenRechnerNachGauss;
 import LehmannCode.Matrizen.MatrixImplementierung.Inverse.InverseMatrix;
@@ -27,11 +27,18 @@ public class MethodenZumTesten {
                     testMatrix[i][j] = random.nextDouble(1, 100000);
                 }
             }
-        } while (new Matrix(testMatrix, new DeterminantenRechnerNachGauss(),
-                new MatrixMultiplikator(), new InverseMatrix(), new Stufenform(new Hilfe()),
-                new Diagonalform(new Hilfe()), new Transponierung()).getDeterminante() < 0.01);
+        } while (aBollean(zeilenAnzahl, testMatrix));
 
         return new Matrix(testMatrix);
+    }
+
+    private static boolean aBollean(int i, double[][] matrix) {
+        if (i < 100) {
+            return false;
+        }
+        return new Matrix(matrix, new DeterminantenRechnerNachGauss(),
+                new MatrixMultiplikator(), new InverseMatrix(), new Stufenform(new Hilfe()),
+                new Diagonalform(new Hilfe()), new Transponierung()).getDeterminante() < 0.01;
     }
 
     public static Vektor generateXVektor(int zeilenAnzahl) {

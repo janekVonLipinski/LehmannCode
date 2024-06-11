@@ -17,17 +17,23 @@ public class Input {
     private static final int INDEX_OF_VEKTOR_VALUES_AFTER_SPLIT = 1;
     private static final int INDEX_OF_MATRIX_VALUES_AFTER_SPLIT = 0;
 
-    public LGS readTxtFile(String pathname) throws IOException {
+    public List<String> readFile(String pathname) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(pathname));
         List<String> read = new ArrayList<>();
         String line;
 
         while ((line = reader.readLine()) != null) {
-            if (line.charAt(0) == '/') {
+            if (!line.isEmpty() && line.charAt(0) == '/') {
                 continue;
             }
             read.add(line);
         }
+
+        return read;
+    }
+
+    public LGS readTxtFile(String pathname) throws IOException {
+        List<String> read = readFile(pathname);
 
         double[] vektor = new double[read.size()];
         double[][] matrix = new double[read.size()][read.size()];

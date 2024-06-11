@@ -8,7 +8,7 @@ import LehmannCode.Vektor.IVektor;
 
 import java.io.IOException;
 
-import static LehmannCode.TestMain.createOutputString;
+import static LehmannCode.OtherStuff.TestMain.createOutputString;
 
 public class Main {
 

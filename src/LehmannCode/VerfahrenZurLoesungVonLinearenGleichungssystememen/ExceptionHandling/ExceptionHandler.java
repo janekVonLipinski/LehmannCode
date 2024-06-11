@@ -41,7 +41,7 @@ public class ExceptionHandler {
                     .filter(i -> i == 0)
                     .count();
 
-            if (anzahlNullen == m.getAnzahlZeilen()) {
+            if (anzahlNullen == m.getAnzahlSpalten()) {
                 throw new IllegalArgumentException("LGS ist nicht eindeutig lösbar");
             }
         }

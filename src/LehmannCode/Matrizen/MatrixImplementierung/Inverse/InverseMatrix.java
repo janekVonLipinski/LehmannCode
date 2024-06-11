@@ -1,5 +1,6 @@
 package LehmannCode.Matrizen.MatrixImplementierung.Inverse;
 
+import LehmannCode.Matrizen.ExceptionHandling.ExceptionHandler;
 import LehmannCode.Matrizen.IMatrix;
 import LehmannCode.Matrizen.MatrixImplementierung.Matrix;
 import LehmannCode.Matrizen.Util.Zeile;
@@ -7,6 +8,8 @@ import LehmannCode.Matrizen.Util.Zeile;
 public class InverseMatrix {
 
     public IMatrix getInverseMatrix(IMatrix m) {
+        new ExceptionHandler().throwExceptionFallsMatrixNichtQuadratischIst(m);
+
         double determinanteVonM = m.getDeterminante();
         double kehrWertVonDeterminante = 1 / determinanteVonM;
 

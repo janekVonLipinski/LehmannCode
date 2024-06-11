@@ -53,9 +53,8 @@ public class GaussAlgorithmus implements LGSLoeser {
         double[][] erweiterteKoeffizientenMatrix = new double[m.getAnzahlZeilen()][m.getAnzahlSpalten() + 1];
 
         for (int zeile = 0; zeile < m.getAnzahlZeilen(); zeile++) {
-            for (int spalte = 0; spalte < m.getAnzahlSpalten(); spalte++) {
-                erweiterteKoeffizientenMatrix[zeile][spalte] = matrix[zeile][spalte];
-            }
+            if (m.getAnzahlSpalten() >= 0)
+                System.arraycopy(matrix[zeile], 0, erweiterteKoeffizientenMatrix[zeile], 0, m.getAnzahlSpalten());
             erweiterteKoeffizientenMatrix[zeile][m.getAnzahlSpalten()] = vektor[zeile];
         }
 

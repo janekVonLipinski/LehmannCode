@@ -1,7 +1,8 @@
-package LehmannCode;
+package LehmannCode.OtherStuff;
 
 import LehmannCode.IO.Input;
 import LehmannCode.IO.Model.LGS;
+import LehmannCode.IO.Output;
 import LehmannCode.Matrizen.IMatrix;
 import LehmannCode.Vektor.IVektor;
 import LehmannCode.VerfahrenZurLoesungVonLinearenGleichungssystememen.Determinantenverfahren.DeterminatenVerfahren;
@@ -26,7 +27,7 @@ public class TestMain {
 
     public static void main(String[] args) {
 
-        List<String> listOfFiles = listFilesUsingJavaIO(PATH);
+        List<String> listOfFiles = listFiles(PATH);
 
         listOfFiles.sort(Comparator.comparingInt(TestMain::extractInt));
 
@@ -35,7 +36,7 @@ public class TestMain {
             System.out.println("currently performing operation " + i);
 
             String fileName = listOfFiles.get(i);
-            String outputFileName = OUTPUT_PATH + "result_matrix_" + (i + 2) + "_kreuz_" + (i + 2) + ".txt";
+            String outputFileName = OUTPUT_PATH + "gauss_result_matrix_" + (i + 2) + "_kreuz_" + (i + 2) + ".txt";
 
             try {
                 LGS lgs = new Input().readTxtFile(PATH + fileName);
@@ -43,11 +44,9 @@ public class TestMain {
                 IMatrix m = lgs.matrix();
                 IVektor v = lgs.vektor();
 
-                String output = createOutputString(m, v);
+                String output = testRuntimeForGauss(m, v);
 
-                System.out.println(toWolframString(m, v));
-
-                //new Output().writeToFile(outputFileName, output);
+                new Output().writeToFile(outputFileName, output);
 
             } catch (IOException re) {
                 System.out.println(re.getMessage());
@@ -122,7 +121,18 @@ public class TestMain {
         return wolfram;
     }
 
-    public static List<String> listFilesUsingJavaIO(String dir) {
+    public static String testRuntimeForGauss(IMatrix m, IVektor v) {
+        long timeBeforeGauss = System.currentTimeMillis();
+        IVektor loesungMitGauss = new GaussAlgorithmus(new ExceptionHandler())
+                .loeseGleichungssystem(m, v);
+        long timeAfterGauss = System.currentTimeMillis();
+
+        long timeForGauss = timeAfterGauss - timeBeforeGauss;
+
+        return "Lösung für Gauss\n" + loesungMitGauss.toString() + "\nZeit: " + timeForGauss + " ms";
+    }
+
+    public static List<String> listFiles(String dir) {
         return Stream.of(new File(dir).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
