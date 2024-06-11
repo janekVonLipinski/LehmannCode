@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import static LehmannCode.OtherStuff.TestMain.listFiles;
 
@@ -43,12 +44,9 @@ public class AnalyseOutput {
                 times.add(fileContent.get(0));
             }
 
-
-            String output = times.stream()
-                    .map(i -> i.replaceAll("\\D", ""))
-                    .map(i -> i +",\n")
+            String output = IntStream.range(0, times.size())
+                    .mapToObj(i -> (i+2) + ";" + times.get(i).replaceAll("\\D", "") + "\n")
                     .collect(Collectors.joining());
-
 
 
             new Output().writeToFile(OUTPUT_PATH + "genral_analyses.csv", output);
